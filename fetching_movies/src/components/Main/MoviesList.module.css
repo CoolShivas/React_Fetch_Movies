@@ -40,3 +40,19 @@
     color: white;
 
 }
+
+.movies-list{
+    /*background-color: red;
+    */background-color: snow;
+    width: 70%;
+    position: relative;
+    top: 20%;
+    left: 18%;
+    padding: 2rem;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    -webkit-border-radius: 20px;
+}

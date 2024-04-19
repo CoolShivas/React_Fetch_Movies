@@ -1,0 +1,26 @@
+.movies{
+    /* background-color: orange; */
+    background-color:  #074173;
+    list-style: none;
+    position: relative;
+    width: 80%;
+    top: 30%;
+    left: 10%;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+
+h2{
+    text-align: center;
+    color: yellow;
+    font-weight: 700;
+    padding: 0.5rem;
+}
+
+p{
+    padding: 1rem 2rem;
+    color: aliceblue;
+}
