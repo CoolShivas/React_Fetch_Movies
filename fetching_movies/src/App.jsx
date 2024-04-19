@@ -67,7 +67,8 @@ function App(){
   <AppName fetchMoviesHandlerABC={fetchMoviesHandler}></AppName>
   </header>
   <main>
-    {!isLoading && <MoviesList moviesABC={movies}></MoviesList>}
+    {!isLoading && movies.length > 0 &&  <MoviesList moviesABC={movies}></MoviesList>}
+    {!isLoading && movies.length === 0 && <p className={classes.para_error}> Found no movies </p> }
     {isLoading && <p className={classes.para_loading}> Loading...... </p> }
   </main>
   <footer></footer>
