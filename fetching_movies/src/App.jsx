@@ -1,5 +1,4 @@
-
-import axios from "axios";
+import classes from "./App.module.css";
 import { useState } from "react";
 import MoviesList from "./components/Main/MoviesList";
 import AppName from "./components/Header/AppName";
@@ -43,7 +42,10 @@ function App(){
 
   const [movies, setMovies] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const fetchMoviesHandler = async() =>{
+    setIsLoading(true);
     const response = await fetch('https://swapi.dev/api/films/')
     const data = await response.json();
 
@@ -56,6 +58,7 @@ function App(){
       }
     })
     setMovies(transformedMovies);
+    setIsLoading(false);
   }
 
   
@@ -64,7 +67,8 @@ function App(){
   <AppName fetchMoviesHandlerABC={fetchMoviesHandler}></AppName>
   </header>
   <main>
-    <MoviesList moviesABC={movies}></MoviesList>
+    {!isLoading && <MoviesList moviesABC={movies}></MoviesList>}
+    {isLoading && <p className={classes.para_loading}> Loading...... </p> }
   </main>
   <footer></footer>
   
