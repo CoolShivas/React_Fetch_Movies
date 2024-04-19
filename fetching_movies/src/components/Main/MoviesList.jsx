@@ -1,7 +1,7 @@
-import SingleList from "./SingleList"
+import Card from "../../Ui/Card"
 
 const MoviesList = ({dummy}) => {
-  return <>
+  return <Card>
   {dummy.map((arr)=>{
     return <ul key={arr.id}>
       {/* <li key={arr.id}> {arr.id} - {arr.title} - {arr.openingText} - {arr.releaseDate}  </li> */}
@@ -11,7 +11,7 @@ const MoviesList = ({dummy}) => {
       <li> {arr.releaseDate} </li>
     </ul>
   })}
-  </>
+  </Card>
 }
 
 export default MoviesList
