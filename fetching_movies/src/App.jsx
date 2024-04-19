@@ -44,20 +44,35 @@ function App(){
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const [error, setError] = useState(null);
+
   const fetchMoviesHandler = async() =>{
     setIsLoading(true);
-    const response = await fetch('https://swapi.dev/api/films/')
-    const data = await response.json();
+    setError(null);
+    try{
+      // const response = await fetch('https://swapi.dev/api/films/')
+      // To check the error use the second link because it is the false link to get the output as Something went wrong;
+      const response = await fetch('https://swapi.dev/api/film/')
 
-    const transformedMovies = data.results.map((movieData)=>{
-      return {
-        id : movieData.episode_id,
-        title : movieData.title,
-        openingText: movieData.opening_crawl,
-        releaseDate:movieData.release_date,
+      if(!response.ok)
+      {
+        throw new Error ('Something went wrong');
       }
-    })
-    setMovies(transformedMovies);
+      const data = await response.json();
+  
+      const transformedMovies = data.results.map((movieData)=>{
+        return {
+          id : movieData.episode_id,
+          title : movieData.title,
+          openingText: movieData.opening_crawl,
+          releaseDate:movieData.release_date,
+        }
+      })
+      setMovies(transformedMovies);
+    }
+    catch(err){
+      setError(err.message);
+    }
     setIsLoading(false);
   }
 
@@ -68,7 +83,8 @@ function App(){
   </header>
   <main>
     {!isLoading && movies.length > 0 &&  <MoviesList moviesABC={movies}></MoviesList>}
-    {!isLoading && movies.length === 0 && <p className={classes.para_error}> Found no movies </p> }
+    {!isLoading && movies.length === 0 && !error && <p className={classes.para_error}> Found no movies </p> }
+    {!isLoading && error && <p className={classes.para_error}> {error} </p> }
     {isLoading && <p className={classes.para_loading}> Loading...... </p> }
   </main>
   <footer></footer>
