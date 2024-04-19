@@ -12,9 +12,11 @@ const SingleList = ({dummyABC}) => {
     <li> {dummyABC[1].openingText} </li>
     <li> {dummyABC[1].releaseDate} </li> */}
 
-    {dummyABC.map((arr)=>{
+    {/* {dummyABC.map((arr)=>{
         return <li key={arr.id}> {arr.id} - {arr.title} - {arr.openingText} - {arr.releaseDate}  </li>
-    })}
+    })} */}
+    
+    <li key={arr.id}> {arr.id} - {arr.title} - {arr.openingText} - {arr.releaseDate}  </li>
     
   </>
 }
