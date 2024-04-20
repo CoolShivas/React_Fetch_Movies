@@ -1,3 +1,4 @@
+import LoadingSpinner from "./components/Main/LoadingSpinner";
 import classes from "./App.module.css";
 import { useEffect, useState } from "react";
 import MoviesList from "./components/Main/MoviesList";
@@ -78,15 +79,22 @@ function App() {
 
   let content = <p className={classes.para_conditional}> Found no movies </p>;
 
-  if (movies.length > 0) {
+  if (movies.length > 0) 
+  {
     content = <MoviesList moviesABC={movies}></MoviesList>;
-  } else if (isError) {
+  } 
+  else if (isError) 
+  {
     content = (
       <p className={classes.para_conditional}> Something went wrong! </p>
     );
-  } else if (isLoading) {
-    content = <p className={classes.para_loading}> Loading...... </p>;
+  } 
+  else if (isLoading) 
+  {
+    // content = <p className={classes.para_loading}> Loading...... </p>;
+    content = <LoadingSpinner/>
   }
+
 
   return (
     <>
