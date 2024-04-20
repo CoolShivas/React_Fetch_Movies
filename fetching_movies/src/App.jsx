@@ -45,12 +45,12 @@ function App() {
   useEffect(()=>{
     console.log("Interval has been setup");
     // Previously, the useState hook re-rendering the data again and again. If you notice that when you click on refresh the page. The data gone and clicking on the button it fetched by the useState. So, to over-come from re-rendering we will use the useEffect hook it will render the data once only and also provide the dependencies if any changes happen it will re-render automaticall or again. UseEffect will fetch data immediately will refreshing without clicking on the fetch button i.e, why it is used.
-    const intervalId = setTimeout(()=>{
+    const timerId = setInterval(()=>{
       fetchMoviesHandler();
     },5000);
     
     return ()=>{
-      clearInterval(intervalId);
+      clearInterval(timerId);
       console.log("Cancelled the interval");
     };
 
