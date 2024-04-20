@@ -1,5 +1,5 @@
 import classes from "./App.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MoviesList from "./components/Main/MoviesList";
 import AppName from "./components/Header/AppName";
 
@@ -41,13 +41,18 @@ function App() {
 
   const [isError, setIsError] = useState(null);
 
+  useEffect(()=>{
+    // Previously, the useState hook re-rendering the data again and again. If you notice that when you click on refresh the page. The data gone and clicking on the button it fetched by the useState. So, to over-come from re-rendering we will use the useEffect hook it will render the data once only and also provide the dependencies if any changes happen it will re-render automaticall or again. UseEffect will fetch data immediately will refreshing without clicking on the fetch button i.e, why it is used.
+    fetchMoviesHandler();
+  },[]);
+
   const fetchMoviesHandler = async () => {
     setIsLoading(true);
     setIsError(null);
     try {
-      // const response = await fetch('https://swapi.dev/api/films/')
+      const response = await fetch('https://swapi.dev/api/films/')
       // To check the error use the second link because it is the false link to get the output as Something went wrong;
-      const response = await fetch("https://swapi.dev/api/film/");
+      // const response = await fetch("https://swapi.dev/api/film/");
 
       if (!response.ok) {
         throw new Error("Something went wrong");
