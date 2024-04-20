@@ -44,11 +44,11 @@ function App(){
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [error, setError] = useState(null);
+  const [isError, setIsError] = useState(null);
 
   const fetchMoviesHandler = async() =>{
     setIsLoading(true);
-    setError(null);
+    setIsError(null);
     try{
       // const response = await fetch('https://swapi.dev/api/films/')
       // To check the error use the second link because it is the false link to get the output as Something went wrong;
@@ -69,9 +69,11 @@ function App(){
         }
       })
       setMovies(transformedMovies);
+      // setIsLoading(false);
     }
-    catch(err){
-      setError(err.message);
+    catch(error){
+      console.log(error);
+      setIsError(error.message);
     }
     setIsLoading(false);
   }
@@ -83,8 +85,11 @@ function App(){
   </header>
   <main>
     {!isLoading && movies.length > 0 &&  <MoviesList moviesABC={movies}></MoviesList>}
-    {!isLoading && movies.length === 0 && !error && <p className={classes.para_error}> Found no movies </p> }
-    {!isLoading && error && <p className={classes.para_error}> {error} </p> }
+    
+    {!isLoading && movies.length === 0 && !isError &&  <p className={classes.para_conditional}> Found no movies </p> }
+    
+    {!isLoading &&  isError && <p className={classes.para_conditional}> Something went wrong! </p> }
+
     {isLoading && <p className={classes.para_loading}> Loading...... </p> }
   </main>
   <footer></footer>
