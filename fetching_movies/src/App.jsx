@@ -3,7 +3,6 @@ import { useState } from "react";
 import MoviesList from "./components/Main/MoviesList";
 import AppName from "./components/Header/AppName";
 
-
 // const Dummy_Movies = [
 //   {
 //     id : 1,
@@ -21,7 +20,7 @@ import AppName from "./components/Header/AppName";
 
 // function App(){
 
-//   return <> 
+//   return <>
 //   <header>
 //   <AppName></AppName>
 //   </header>
@@ -29,72 +28,81 @@ import AppName from "./components/Header/AppName";
 //     <MoviesList dummy={Dummy_Movies}></MoviesList>
 //   </main>
 //   <footer></footer>
-  
+
 //    </>
 // }
 
 // export default App;
 
-
-
-
-function App(){
-
+function App() {
   const [movies, setMovies] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
   const [isError, setIsError] = useState(null);
 
-  const fetchMoviesHandler = async() =>{
+  const fetchMoviesHandler = async () => {
     setIsLoading(true);
     setIsError(null);
-    try{
+    try {
       // const response = await fetch('https://swapi.dev/api/films/')
       // To check the error use the second link because it is the false link to get the output as Something went wrong;
-      const response = await fetch('https://swapi.dev/api/film/')
+      const response = await fetch("https://swapi.dev/api/film/");
 
-      if(!response.ok)
-      {
-        throw new Error ('Something went wrong');
+      if (!response.ok) {
+        throw new Error("Something went wrong");
       }
       const data = await response.json();
-  
-      const transformedMovies = data.results.map((movieData)=>{
+
+      const transformedMovies = data.results.map((movieData) => {
         return {
-          id : movieData.episode_id,
-          title : movieData.title,
+          id: movieData.episode_id,
+          title: movieData.title,
           openingText: movieData.opening_crawl,
-          releaseDate:movieData.release_date,
-        }
-      })
+          releaseDate: movieData.release_date,
+        };
+      });
       setMovies(transformedMovies);
       // setIsLoading(false);
-    }
-    catch(error){
+    } catch (error) {
       console.log(error);
       setIsError(error.message);
     }
     setIsLoading(false);
+  };
+
+  let content = <p className={classes.para_conditional}> Found no movies </p>;
+
+  if (movies.length > 0) {
+    content = <MoviesList moviesABC={movies}></MoviesList>;
+  } else if (isError) {
+    content = (
+      <p className={classes.para_conditional}> Something went wrong! </p>
+    );
+  } else if (isLoading) {
+    content = <p className={classes.para_loading}> Loading...... </p>;
   }
 
-  
-  return <> 
-  <header>
-  <AppName fetchMoviesHandlerABC={fetchMoviesHandler}></AppName>
-  </header>
-  <main>
-    {!isLoading && movies.length > 0 &&  <MoviesList moviesABC={movies}></MoviesList>}
+  return (
+    <>
+      <header>
+        <AppName fetchMoviesHandlerABC={fetchMoviesHandler}></AppName>
+      </header>
+
+      <main>
+        {/* {!isLoading && movies.length > 0 &&  <MoviesList moviesABC={movies}></MoviesList>}
     
     {!isLoading && movies.length === 0 && !isError &&  <p className={classes.para_conditional}> Found no movies </p> }
     
     {!isLoading &&  isError && <p className={classes.para_conditional}> Something went wrong! </p> }
 
-    {isLoading && <p className={classes.para_loading}> Loading...... </p> }
-  </main>
-  <footer></footer>
-  
-   </>
+    {isLoading && <p className={classes.para_loading}> Loading...... </p> } */}
+
+        {content}
+      </main>
+      <footer></footer>
+    </>
+  );
 }
 
- export default App;
+export default App;
