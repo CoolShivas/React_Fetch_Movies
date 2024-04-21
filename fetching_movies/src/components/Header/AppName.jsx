@@ -17,8 +17,8 @@ const AppName = ({fetchMoviesHandlerABC}) => {
 
   const handlerOnClick = () =>{
     console.log("fetch btn clicked");
-    fetchMoviesHandlerABC;
-  }
+    fetchMoviesHandlerABC();
+  };
 
   return <div className={classes.btn_first__div}>
     <div className={classes.btn_second__div}>

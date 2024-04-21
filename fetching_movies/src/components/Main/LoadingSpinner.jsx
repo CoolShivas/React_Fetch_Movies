@@ -4,7 +4,7 @@ const LoadingSpinner = () => {
   return (
     <div className="d-flex justify-content-center">
       <div className="spinner-border" role="status" style={{width : "5rem", height : "5rem"}}>
-        <span className="visually">Loading...</span>
+        <span className="visually"></span>
       </div>
     </div>
   );

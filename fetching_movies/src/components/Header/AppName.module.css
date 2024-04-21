@@ -6,7 +6,7 @@
     top: 30%;
     left: 15%;
     width: 70%;
-    height: 20vh;
+    height: 30vh;
     margin: 30px;
     
     border-radius: 20px;
@@ -14,7 +14,7 @@
     -moz-border-radius: 20px;
     -ms-border-radius: 20px;
     -o-border-radius: 20px;
-    
+
     
 }
 
@@ -23,8 +23,10 @@
     /* background-color: orange; */
     padding: 1.5rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     right: 30%;
+    gap: 1rem;
 }
 
 button{
@@ -39,4 +41,11 @@ button{
     font-size: 25px;
     font-weight: 500;
     color: white;
+
+    
+}
+
+.btn_cancel{
+    background-color: orange;
+ 
 }
