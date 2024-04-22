@@ -71,6 +71,9 @@ const InputForm = ({addInputMovieHandlerABC}) => {
     releaseDate : releaseDateRef.current.value,
    }
    addInputMovieHandlerABC(newMovies);
+   titleRef.current.value = "";
+   openingTextRef.current.value = "";
+   releaseDateRef.current.value = "";
   };
 
 

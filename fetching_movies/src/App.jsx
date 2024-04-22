@@ -23,8 +23,8 @@ function App() {
     setIsError(false);
     // setRetryingTimer(false);
     try {
-      // const response = await fetch('https://dummyjson.com/products/1');
-      const response = await fetch("https://crudcrud.com/api/159486bbf7c845c7928b21b31766df71/shivaji");
+      const response = await fetch('https://fetchmovies-5c32f-default-rtdb.firebaseio.com/shivaji.json');
+      // const response = await fetch("https://crudcrud.com/api/159486bbf7c845c7928b21b31766df71/shivaji");
      
       console.log(response);
       if (!response.ok) {
@@ -103,7 +103,7 @@ function App() {
 
   const addInputMovieHandler = async(latestMovies) =>{
     console.log(latestMovies);
-    const response = await fetch("https://crudcrud.com/api/159486bbf7c845c7928b21b31766df71/shivaji",{
+    const response = await fetch("https://fetchmovies-5c32f-default-rtdb.firebaseio.com/shivaji.json",{
       method : 'POST',
       body : JSON.stringify(latestMovies),
       headers:{
