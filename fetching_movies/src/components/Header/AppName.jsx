@@ -13,11 +13,11 @@ import classes from "./AppName.module.css";
 
 
 
-const AppName = ({fetchMoviesHandlerABC}) => {
+const AppName = ({handlerOnFetchMoviesABC}) => {
 
   const handlerOnClick = () =>{
     console.log("fetch btn clicked");
-    fetchMoviesHandlerABC();
+    handlerOnFetchMoviesABC();
   };
 
   return <div className={classes.btn_first__div}>

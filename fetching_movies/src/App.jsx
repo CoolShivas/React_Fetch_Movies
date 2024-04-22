@@ -1,6 +1,7 @@
+import axios from "axios";
 import LoadingSpinner from "./components/Main/LoadingSpinner";
 import classes from "./App.module.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import MoviesList from "./components/Main/MoviesList";
 import AppName from "./components/Header/AppName";
 
@@ -13,21 +14,21 @@ function App() {
 
   const [retryingTimer, setRetryingTimer] = useState(null);
 
-
-  const fetchMoviesHandler = async () => {
+  const handlerOnFetchMovies = useCallback(async () => {
     setIsLoading(true);
     setIsError(false);
     setRetryingTimer(false);
     try {
-      const response = await fetch("https://swapi.dev/api/film/");
-      // console.log(response);
-
+      // const response = await fetch('https://dummyjson.com/products/1');
+      const response = await fetch('https://swapi.dev/api/film/');
+     
+      console.log(response);
       if (!response.ok) {
         throw new Error("Something went wrong... Retrying");
       }
 
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
 
       const transformedMovies = data.results.map((arr) => {
         return {
@@ -39,31 +40,27 @@ function App() {
       });
       setMovies(transformedMovies);
       console.log(transformedMovies);
-    } 
-    catch (err) 
-    {
+    } catch (err) {
       console.log(err.message);
       setIsError(err.message);
-      retryFetchFunc();
+       retryFetchFunc();
     }
     setIsLoading(false);
-  };
-
-  
-  useEffect(()=>{
-    fetchMoviesHandler();
   },[]);
 
+  useEffect(() => {
+    handlerOnFetchMovies();
+  }, [handlerOnFetchMovies]);
 
-  const retryFetchFunc = () =>{
-    const timerID = setTimeout(()=>{
-      fetchMoviesHandler();
+  const retryFetchFunc = () => {
+    const timerID = setTimeout(() => {
+      handlerOnFetchMovies();
       // fetchMoviesHandler;
-    },5000);
+    }, 5000);
     setRetryingTimer(timerID);
   };
 
-  const cancelRetryFetchFunc = () =>{
+  const cancelRetryFetchFunc = () => {
     clearTimeout(retryingTimer);
     setIsLoading(false);
   };
@@ -81,10 +78,12 @@ function App() {
       </p>
     );
   } else if (isError) {
-    content = <p className={classes.para_error}> {isError} 
-    {/* <button onClick={()=>{cancelRetryFetchFunc()}}> Cancel </button> */}
-    <button onClick={cancelRetryFetchFunc}> Cancel </button>
-    </p>;
+    content = (
+      <p className={classes.para_error}>
+        {isError}
+        <button onClick={cancelRetryFetchFunc}> Cancel </button> 
+      </p>
+    );
   }
 
   // Ending If-Else Conditional Rendering
@@ -92,7 +91,7 @@ function App() {
   return (
     <>
       <header>
-        <AppName fetchMoviesHandlerABC={fetchMoviesHandler}></AppName>
+        <AppName handlerOnFetchMoviesABC={handlerOnFetchMovies}></AppName>
       </header>
 
       <main>
