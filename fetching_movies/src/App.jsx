@@ -1,9 +1,11 @@
-import axios from "axios";
+import InputForm from "./components/Form/InputForm";
+import Card from "./Ui/Card";
 import LoadingSpinner from "./components/Main/LoadingSpinner";
 import classes from "./App.module.css";
 import { useCallback, useEffect, useState } from "react";
 import MoviesList from "./components/Main/MoviesList";
 import AppName from "./components/Header/AppName";
+let timer = null;
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -14,13 +16,15 @@ function App() {
 
   const [retryingTimer, setRetryingTimer] = useState(null);
 
+  const [fixTitle, setFixTitle] = useState([]);
+
   const handlerOnFetchMovies = useCallback(async () => {
     setIsLoading(true);
     setIsError(false);
-    setRetryingTimer(false);
+    // setRetryingTimer(false);
     try {
       // const response = await fetch('https://dummyjson.com/products/1');
-      const response = await fetch('https://swapi.dev/api/film/');
+      const response = await fetch('https://swapi.dev/api/films/');
      
       console.log(response);
       if (!response.ok) {
@@ -50,18 +54,23 @@ function App() {
 
   useEffect(() => {
     handlerOnFetchMovies();
-  }, [handlerOnFetchMovies]);
+
+    // timer = setInterval(()=>{
+    //   handlerOnFetchMovies();
+    // },5000);
+    // setRetryingTimer(stopRetrying);
+  }, []);
 
   const retryFetchFunc = () => {
     const timerID = setTimeout(() => {
       handlerOnFetchMovies();
-      // fetchMoviesHandler;
     }, 5000);
     setRetryingTimer(timerID);
   };
 
   const cancelRetryFetchFunc = () => {
     clearTimeout(retryingTimer);
+    // clearInterval(timer);?
     setIsLoading(false);
   };
 
@@ -88,9 +97,26 @@ function App() {
 
   // Ending If-Else Conditional Rendering
 
+  // const handlerOnFixTitle = (tile, opText, reDate) =>{
+  //   console.log(`printing the title ${tile} opening Text ${opText} reDate ${reDate}`);
+
+  //   // const newData = [...movies,{
+  //   //   id: Math.random(),
+  //   //   title: tile,
+  //   //   openingText: opText,
+  //   //   releaseDate: reDate,
+  //   // }];
+  //   // setFixTitle(newData);
+  // };
+
+  const addInputMovieHandler = (latestMovies) =>{
+    console.log(latestMovies);
+  }
+
   return (
     <>
       <header>
+        <InputForm addInputMovieHandlerABC={addInputMovieHandler}></InputForm>
         <AppName handlerOnFetchMoviesABC={handlerOnFetchMovies}></AppName>
       </header>
 

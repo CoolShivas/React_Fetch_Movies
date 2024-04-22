@@ -5,8 +5,8 @@
     position:relative;
     top: 30%;
     left: 15%;
-    width: 70%;
-    height: 30vh;
+    width: 60%;
+    height: 10vh;
     margin: 30px;
     
     border-radius: 20px;
@@ -29,7 +29,7 @@
     gap: 1rem;
 }
 
-button{
+.btn_fetch__movies{
     background-color: #10439F;
     padding: 0.3rem 2rem;
     border: none;
