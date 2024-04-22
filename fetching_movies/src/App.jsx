@@ -1,5 +1,5 @@
+
 import InputForm from "./components/Form/InputForm";
-import Card from "./Ui/Card";
 import LoadingSpinner from "./components/Main/LoadingSpinner";
 import classes from "./App.module.css";
 import { useCallback, useEffect, useState } from "react";
@@ -16,7 +16,7 @@ function App() {
 
   const [retryingTimer, setRetryingTimer] = useState(null);
 
-  const [fixTitle, setFixTitle] = useState([]);
+  
 
   const handlerOnFetchMovies = useCallback(async () => {
     setIsLoading(true);
@@ -24,7 +24,7 @@ function App() {
     // setRetryingTimer(false);
     try {
       // const response = await fetch('https://dummyjson.com/products/1');
-      const response = await fetch('https://swapi.dev/api/films/');
+      const response = await fetch("https://crudcrud.com/api/159486bbf7c845c7928b21b31766df71/shivaji");
      
       console.log(response);
       if (!response.ok) {
@@ -34,16 +34,29 @@ function App() {
       const data = await response.json();
       console.log(data);
 
-      const transformedMovies = data.results.map((arr) => {
-        return {
-          id: arr.episode_id,
-          title: arr.title,
-          openingText: arr.opening_crawl,
-          releaseDate: arr.release_date,
-        };
-      });
-      setMovies(transformedMovies);
-      console.log(transformedMovies);
+      // const transformedMovies = data.results.map((arr) => {
+      //   return {
+      //     id: arr.episode_id,
+      //     title: arr.title,
+      //     openingText: arr.opening_crawl,
+      //     releaseDate: arr.release_date,
+      //   };
+      // });
+      // setMovies(transformedMovies);
+      // console.log(transformedMovies);
+
+      const loadedMovies = [];
+
+      for(const key in data){
+        loadedMovies.push({
+          id : key,
+          title : data[key].title,
+          openingText: data[key].openingText,
+          releaseDate:data[key].releaseDate,
+        });
+      }
+      setMovies(loadedMovies);
+
     } catch (err) {
       console.log(err.message);
       setIsError(err.message);
@@ -74,6 +87,35 @@ function App() {
     setIsLoading(false);
   };
 
+// Starting of Add new movies button handler
+
+ // const handlerOnFixTitle = (tile, opText, reDate) =>{
+  //   console.log(`printing the title ${tile} opening Text ${opText} reDate ${reDate}`);
+
+  //   // const newData = [...movies,{
+  //   //   id: Math.random(),
+  //   //   title: tile,
+  //   //   openingText: opText,
+  //   //   releaseDate: reDate,
+  //   // }];
+  //   // setFixTitle(newData);
+  // };
+
+  const addInputMovieHandler = async(latestMovies) =>{
+    console.log(latestMovies);
+    const response = await fetch("https://crudcrud.com/api/159486bbf7c845c7928b21b31766df71/shivaji",{
+      method : 'POST',
+      body : JSON.stringify(latestMovies),
+      headers:{
+        "Content-Type" : "application/json"
+      }
+    });
+    const data = await response.json();
+    console.log(data);
+  };
+
+// Ending of Add new movies button handler
+
   // Starting If-Else Conditional Rendering
 
   let content = <p className={classes.para_conditional}> Found no movies </p>;
@@ -97,21 +139,7 @@ function App() {
 
   // Ending If-Else Conditional Rendering
 
-  // const handlerOnFixTitle = (tile, opText, reDate) =>{
-  //   console.log(`printing the title ${tile} opening Text ${opText} reDate ${reDate}`);
-
-  //   // const newData = [...movies,{
-  //   //   id: Math.random(),
-  //   //   title: tile,
-  //   //   openingText: opText,
-  //   //   releaseDate: reDate,
-  //   // }];
-  //   // setFixTitle(newData);
-  // };
-
-  const addInputMovieHandler = (latestMovies) =>{
-    console.log(latestMovies);
-  }
+ 
 
   return (
     <>
@@ -141,6 +169,7 @@ function App() {
         {/* Ending of Single Line Conditional Rendering */}
 
         {content}
+
       </main>
       <footer></footer>
     </>
