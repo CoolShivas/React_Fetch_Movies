@@ -1,27 +1,76 @@
 .para_loading{
     /* color: red; */
-    color: white;
+    /* color: white;
     font-size: 50px;
     
     position: relative;
     top: 30%;
-    left: 35%;
+    left: 35%; */
 
+    
+    background-color: snow;
+    position: relative;
+    top: 30%;
+    left: 15%;
+    width: 60%;
+    padding: 1rem 2rem;
+    margin: 30px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+
+    color: black;
 }
 
 
 .para_conditional{
-    color: white;
+    /* color: white;
     font-size: 25px;
     position: relative;
     top: 30%;
-    left: 40%;
+    left: 40%; */
+
+    background-color: snow;
+    position: relative;
+    top: 30%;
+    left: 15%;
+    width: 60%;
+    padding: 1rem 2rem;
+    margin: 30px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+
+    color: black;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 .para_error{
-    color: white;
+    /* color: white;
     font-size: 25px;
     position: relative;
     top: 30%;
-    left: 35%;   
+    left: 35%;    */
+
+    background-color: snow;
+    position: relative;
+    top: 30%;
+    left: 15%;
+    width: 60%;
+    padding: 1rem 2rem;
+    margin: 30px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+
+    color: black;
+    font-size: 25px;
+    font-weight: 600;
 }

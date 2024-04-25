@@ -2,16 +2,21 @@ import Movies from "./Movies";
 import classes from "./MoviesList.module.css";
 
 
-const MoviesList = (props) => {
+const MoviesList = ({moviesABC, deleteInputMovieHandlerABC}) => {
+  // console.log(moviesABC);// Here, we are able to access moviesABC;
+  
+  
   return <ul className={classes['movies-list']}>
-    {props.moviesABC.map((arr)=>{
+    {moviesABC.map((arr)=>{
       return <Movies 
-      title={arr.title}
-      releaseDate={arr.release}
-      openingText={arr.openingText}
+      idABC={arr.id}
+      titleABC={arr.title}
+      releaseDateABC={arr.releaseDate}
+      openingTextABC={arr.openingText}
+      deleteInputMovieHandlerXYZ={deleteInputMovieHandlerABC}
       ></Movies>
     })}
   </ul>
 }
 
-export default MoviesList 
+export default MoviesList; 

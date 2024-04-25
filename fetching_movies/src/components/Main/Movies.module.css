@@ -1,4 +1,4 @@
-.movies{
+.movies_updates{
     /* background-color: orange; */
     background-color:  #074173;
     list-style: none;
@@ -11,16 +11,45 @@
     -moz-border-radius: 15px;
     -ms-border-radius: 15px;
     -o-border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    & h2{
+        text-align: center;
+        color: yellow;
+        font-weight: 700;
+        padding: 0.5rem;
+    }
+
+    & h3{
+        /* background-color: orange; */
+        color: white;
+        text-align: center;
+    }
+
+    & p{
+        padding: 1rem 2rem;
+        color: aliceblue;
+        text-align: center;
+    }
+
+    & .del_btn__movies{
+        background-color: orange;
+        padding: 0.5rem;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        border-radius: 30px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        -ms-border-radius: 30px;
+        -o-border-radius: 30px;
+       }
+       
 }
 
-h2{
-    text-align: center;
-    color: yellow;
-    font-weight: 700;
-    padding: 0.5rem;
-}
 
-p{
-    padding: 1rem 2rem;
-    color: aliceblue;
-}
+
+
+

@@ -2,7 +2,7 @@
     /* background-color: orange; */
     margin: 15px;
     padding: 0 0.2px;
-    background-color: snow;
+    background-color: #BACD92;
     position: relative;
     top: 30%;
     left: 15%;
@@ -18,8 +18,8 @@
 
 
 .control label{
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 25px;
+    font-weight: 500;
     /* background-color: orange; */
     display: block;
     margin-bottom: 0.5rem;
@@ -33,4 +33,20 @@
     display: block;
     width: 100%;
     padding: 0.2rem;
+}
+
+
+.btn_add__movies{
+    background-color: greenyellow;
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 400;
+
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
 }
